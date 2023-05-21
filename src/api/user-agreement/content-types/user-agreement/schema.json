@@ -1,0 +1,36 @@
+{
+  "kind": "singleType",
+  "collectionName": "user_agreements",
+  "info": {
+    "singularName": "user-agreement",
+    "pluralName": "user-agreements",
+    "displayName": "User agreement"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "richtext"
+    }
+  }
+}
