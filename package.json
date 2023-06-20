@@ -10,6 +10,7 @@
     "strapi": "strapi"
   },
   "dependencies": {
+    "@_sh/strapi-plugin-ckeditor": "^2.0.4",
     "@strapi/plugin-i18n": "4.11.1",
     "@strapi/plugin-users-permissions": "4.11.1",
     "@strapi/strapi": "4.11.1",
@@ -19,7 +20,8 @@
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "810a787d-f0e7-4d3c-a263-b88d0e815e2d"
+    "uuid": "810a787d-f0e7-4d3c-a263-b88d0e815e2d",
+    "telemetryDisabled": true
   },
   "engines": {
     "node": ">=14.19.1 <=18.x.x",
