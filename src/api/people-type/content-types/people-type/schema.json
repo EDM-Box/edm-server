@@ -4,10 +4,11 @@
   "info": {
     "singularName": "people-type",
     "pluralName": "people-types",
-    "displayName": "People Types"
+    "displayName": "People Types",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {
     "i18n": {

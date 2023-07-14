@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "projects",
+  "collectionName": "places",
   "info": {
-    "singularName": "project",
-    "pluralName": "projects",
-    "displayName": "Projects",
+    "singularName": "place",
+    "pluralName": "places",
+    "displayName": "Places",
     "description": ""
   },
   "options": {
@@ -25,11 +25,11 @@
       "type": "string",
       "required": true
     },
-    "projectsTypes": {
+    "placeType": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::projects-type.projects-type",
-      "inversedBy": "projects"
+      "relation": "manyToOne",
+      "target": "api::place-type.place-type",
+      "inversedBy": "places"
     }
   }
 }

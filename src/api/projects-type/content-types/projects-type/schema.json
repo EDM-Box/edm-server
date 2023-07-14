@@ -1,14 +1,13 @@
 {
   "kind": "collectionType",
-  "collectionName": "projects",
+  "collectionName": "projects_types",
   "info": {
-    "singularName": "project",
-    "pluralName": "projects",
-    "displayName": "Projects",
-    "description": ""
+    "singularName": "projects-type",
+    "pluralName": "projects-types",
+    "displayName": "Projects types"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {
     "i18n": {
@@ -25,11 +24,11 @@
       "type": "string",
       "required": true
     },
-    "projectsTypes": {
+    "projects": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::projects-type.projects-type",
-      "inversedBy": "projects"
+      "target": "api::project.project",
+      "mappedBy": "projectsTypes"
     }
   }
 }
