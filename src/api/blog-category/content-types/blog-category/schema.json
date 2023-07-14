@@ -4,10 +4,11 @@
   "info": {
     "singularName": "blog-category",
     "pluralName": "blog-categories",
-    "displayName": "Blog category"
+    "displayName": "Blog Categories",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {
     "i18n": {
@@ -32,11 +33,11 @@
       },
       "type": "richtext"
     },
-    "blog": {
+    "blogs": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::blog.blog",
-      "inversedBy": "blog_categories"
+      "mappedBy": "blogCategories"
     }
   }
 }
