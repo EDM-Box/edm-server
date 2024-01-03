@@ -4,8 +4,7 @@
   "info": {
     "singularName": "event",
     "pluralName": "events",
-    "displayName": "Events",
-    "description": ""
+    "displayName": "Event"
   },
   "options": {
     "draftAndPublish": true
@@ -16,7 +15,7 @@
     }
   },
   "attributes": {
-    "title": {
+    "name": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -24,44 +23,6 @@
       },
       "type": "string",
       "required": true
-    },
-    "eventType": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::event-type.event-type",
-      "inversedBy": "events"
-    },
-    "city": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::city.city",
-      "inversedBy": "events"
-    },
-    "photo": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "description": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "customField",
-      "options": {
-        "preset": "toolbar"
-      },
-      "required": false,
-      "customField": "plugin::ckeditor5.CKEditor"
     }
   }
 }

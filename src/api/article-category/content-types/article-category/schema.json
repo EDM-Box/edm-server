@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "styles",
+  "collectionName": "article_categories",
   "info": {
-    "singularName": "style",
-    "pluralName": "styles",
-    "displayName": "Style",
-    "description": ""
+    "singularName": "article-category",
+    "pluralName": "article-categories",
+    "displayName": "Article category"
   },
   "options": {
     "draftAndPublish": true
@@ -26,16 +25,15 @@
       "required": true,
       "unique": true
     },
-    "year": {
+    "order": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
       "type": "integer",
-      "required": true,
-      "unique": false,
-      "min": 1000
+      "unique": true,
+      "required": true
     },
     "description": {
       "pluginOptions": {
@@ -43,13 +41,13 @@
           "localized": true
         }
       },
-      "type": "text",
-      "required": true
+      "type": "text"
     },
-    "parent_styles": {
+    "articles": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::style.style"
+      "target": "api::article.article",
+      "mappedBy": "article_category"
     }
   }
 }
