@@ -80,9 +80,8 @@ $RECYCLE.BIN/
 ssl
 .idea
 nbproject
-# public/uploads/*
+public/uploads/*
 !public/uploads/.gitkeep
-.vscode
 
 ############################
 # Node.js
@@ -100,7 +99,6 @@ node_modules
 # Tests
 ############################
 
-testApp
 coverage
 
 ############################

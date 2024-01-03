@@ -1,15 +1,19 @@
-
-FROM node:18-alpine
+FROM node:20.10-alpine
 # Installing libvips-dev for sharp Compatibility
-RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev nasm bash vips-dev
+RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev nasm bash vips-dev git
 ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
-WORKDIR /opt/edm_project/edm-server
-COPY ./package.json ./package-lock.json ./
-ENV PATH /opt/edm_project/edm-server/node_modules/.bin:$PATH
-RUN npm install
-WORKDIR /opt/edm_project/edm-server
-COPY ./ .
-RUN npm run build
+
+WORKDIR /opt/edm-server/
+COPY package.json package-lock.json ./
+RUN npm install -g node-gyp
+RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install
+ENV PATH /opt/edm-server/node_modules/.bin:$PATH
+
+WORKDIR /opt/edm-server
+COPY . .
+RUN chown -R node:node /opt/edm-server
+USER node
+RUN ["npm", "run", "build"]
 EXPOSE 1337
 CMD ["npm", "run", "develop"]
