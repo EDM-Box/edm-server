@@ -6,8 +6,9 @@ ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /opt/edm-server/
 COPY package.json package-lock.json ./
+RUN npm config set unsafe-perm true
 RUN npm install -g node-gyp
-RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install --only=production
+RUN npm config set fetch-retry-maxtimeout 600000 -g && npm ci --only=production --unsafe-perm=true --allow-root
 ENV PATH /opt/edm-server/node_modules/.bin:$PATH
 WORKDIR /opt/edm-server
 COPY . .
@@ -24,7 +25,7 @@ WORKDIR /opt/edm-server
 COPY --from=build /opt/edm-server ./
 ENV PATH /opt/edm-server/node_modules/.bin:$PATH
 
-RUN chown -R node:node /opt/edm-server
+RUN chown -R node /opt/edm-server
 USER node
 EXPOSE 1337
 CMD ["npm", "run", "start"]
