@@ -1,37 +1,38 @@
 version: "3"
 services:
-  strapi:
-    container_name: strapi
-    build:
-      context: /opt/edm-server/
-      dockerfile: Dockerfile.production
-    image: strapi:latest
+  edm-server:
+    container_name: edm-server
+    build: .
+    image: edm-server:latest
     restart: unless-stopped
+    env_file: .env
     environment:
       DATABASE_CLIENT: ${DATABASE_CLIENT}
       DATABASE_HOST: ${DATABASE_HOST}
-      DATABASE_PORT: ${DATABASE_PORT}
       DATABASE_NAME: ${DATABASE_NAME}
       DATABASE_USERNAME: ${DATABASE_USERNAME}
-      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_PORT: ${DATABASE_PORT}
       JWT_SECRET: ${JWT_SECRET}
       ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
-      APP_KEYS: ${APP_KEYS}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
       NODE_ENV: ${NODE_ENV}
     volumes:
-      - /opt/edm-server/config:/opt/edm-server/config
-      - /opt/edm-server/src:/opt/edm-server/src
-      - /opt/edm-server/package.json:/opt/edm-server/package.json
-      - /opt/edm-server/yarn.lock:/opt/edm-server/yarn.lock
-      - /opt/edm-server/.env:/opt/edm-server/.env
-      - /opt/edm-server/public/uploads:/opt/edm-server/public/uploads
+      - ./config:/opt/app/config
+      - ./src:/opt/app/src
+      - ./package.json:/opt/package.json
+      - ./package-lock.json:/opt/package-lock.json
+
+      - ./.env:/opt/app/.env
+      - ./public/uploads:/opt/app/public/uploads
     ports:
       - "1337:1337"
     networks:
-      - strapi
+      - edm-server
 
+volumes:
+  edm-server-data:
 
 networks:
-  strapi:
-    name: Strapi
+  edm-server:
+    name: Edm-server
     driver: bridge
