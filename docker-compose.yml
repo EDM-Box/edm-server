@@ -2,13 +2,14 @@ version: "3"
 services:
   strapi:
     container_name: strapi
-    build: .
+    build:
+      context: /opt/edm-server/
+      dockerfile: Dockerfile.production
     image: strapi:latest
     restart: unless-stopped
-    env_file: .env
     environment:
       DATABASE_CLIENT: ${DATABASE_CLIENT}
-      DATABASE_HOST: postgres
+      DATABASE_HOST: ${DATABASE_HOST}
       DATABASE_PORT: ${DATABASE_PORT}
       DATABASE_NAME: ${DATABASE_NAME}
       DATABASE_USERNAME: ${DATABASE_USERNAME}
@@ -18,18 +19,17 @@ services:
       APP_KEYS: ${APP_KEYS}
       NODE_ENV: ${NODE_ENV}
     volumes:
-      - ./config:/opt/edm-server/config
-      - ./src:/opt/edm-server/src
-      - ./package.json:/opt/edm-server/package.json
-      - ./yarn.lock:/opt/edm-server/yarn.lock
-      - ./.env:/opt/edm-server/.env
-      - ./public/uploads:/opt/edm-server/public/uploads
+      - /opt/edm-server/config:/opt/edm-server/config
+      - /opt/edm-server/src:/opt/edm-server/src
+      - /opt/edm-server/package.json:/opt/edm-server/package.json
+      - /opt/edm-server/yarn.lock:/opt/edm-server/yarn.lock
+      - /opt/edm-server/.env:/opt/edm-server/.env
+      - /opt/edm-server/public/uploads:/opt/edm-server/public/uploads
     ports:
       - "1337:1337"
     networks:
       - strapi
-    depends_on:
-      - postgres
+
 
 networks:
   strapi:
